@@ -1,6 +1,6 @@
 from app import create_app, sentiment_api
 
-app = create_app()
+app = create_app('production')
 
 @app.shell_context_processor
 def make_shell_context():

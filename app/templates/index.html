@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple web app for getting sentiment from text">
+    <meta name="author" content="Vincent Nyanga">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sentilysis</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="font-sans antialiased bg-grey-light pt-12 text-grey-dark">
+    <nav id="nav" class="fixed pin-t pin-x z-300">
+        <div class="bg-teal-dark">
+            <div class="container mx-auto px-4">
+                <div class="flex items-center justify-between flex-wrap py-4">
+                    <div class="flex items-center flex-no-shrink text-white mr-6">
+                        <span class="font-semibold text-xl tracking-tight">Sentilysis</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
+    <div class="container mx-auto px-4 py-4">
+        <div class="mb-6">
+            {% for category, message in get_flashed_messages(with_categories=true) %}
+            <div class="flex justify-between bg-{{category}}-lightest border-t border-b border-{{category}} text-{{category}}-dark px-4 py-3" role="alert">
+                {{ message }}
+             </div>
+            {% endfor %}
+        </div>
+        <div class="mx-auto items-center">
+            <div class="bg-white shadow rounded py-4 px-2 sm:px-4">
+                <h2 class="text-center">Get sentiment from text</h2>
+                <form method="POST" class="mt-10">
+                    {{ form.hidden_tag() }}
+                    <div>
+                        {{ form.text( class_="bg-grey-lighter appearance-none border-2 border-grey-lighter rounded w-full py-2 px-4 text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-teal") }}
+                    </div>
+                    {% for message in form.text.errors %}
+                    <div class="text-red-light text-sm">{{ message }}</div>
+                    {% endfor %}
+                    {{ form.submit(class_="rounded font-bold bg-teal mt-4 text-white px-4 py-2")}}
+            </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+</html>
